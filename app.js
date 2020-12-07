@@ -2,9 +2,7 @@ const { json } = require("express");
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
-const apiKeys = require('./config');
-
-const apiKey = apiKeys.apiKey;
+const config = require('./config');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +13,7 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
   const query = req.body.cityName;
-  const appID = apiKey;
+  const appID = config.apiKey;
   const units = "imperial";
   const url =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
